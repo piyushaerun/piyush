@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<head>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA84yOgD6ZGlb3sJ8hx8GMmQrJM3tTj-Tk
+
+&callback=getLocation"></script>
+
+<script src="onetheme.js">
+</script>
+<script>
+
+var a=[];
+var data1;
+var data2;
+
+function validateform()
+{
+var x=document.forms["form1"]["first"].value;
+var y=document.forms["form1"]["email"].value;
+var z=document.forms["form1"]["mobile"].value;
+var v=document.forms["form1"]["password"].value;
+
+if(x=="")
+{
+alert("First Name field should not be empty");
+return false;
+}
+if(y=="")
+{
+alert("Email field should not be empty");
+return false;
+}
+else{
+var atpos = y.indexOf("@");
+    var dotpos = y.lastIndexOf(".");
+    if (atpos<1 || atpos
+>dotpos) {
+        alert("Not a valid e-mail address");
+        return false;
+    }
+}
+if(z=="")
+{
+alert("Mobile Number must be filled");
+return false;
+}
+if(z.length!=10)
+{
+alert("Mobile number should be of 10 digits");
+return false;
+}
+if(v=="")
+{
+alert("Password  must be filled");
+return false;
+}
+if(v.length<6)
+{
+alert("password should be of 6 or more digits");
+return false;
+}
+
+
+//localStorage.setItem("piy",JSON.stringify(data));
+//alert(localStorage.getItem("piy"));
+ 
+var flag1=0;
+for(var i=0;i<a.length;i++)
+{
+var data3=a[i];
+var mob=data3.mobile
+if(z==mob)
+{
+alert("user already there");
+flag1=1;
+break;
+}
+}
+//console.log(data1);
+if(flag1==0){
+var data={"first":x,"email":y,"mobile":z};
+localStorage.setItem(z,JSON.stringify(data));
+data1=JSON.parse(localStorage.getItem(z));
+a.push(data1);
+localStorage.setItem("rec",z);
+window.location="theme.html";
+}
+
+//alert(a[0].first);
+
+
+
+
+
+}
+
+</script>
+<style>
+.con{
+background-color:#000000;
+width:100%;
+display:inline-flex;
+}
+.con1{
+color:#ffffff;
+font-weight:bold;
+margin:2%;
+margin-left:200px;
+margin-top:40px;
+
+}
+.con2{
+color:#ffffff;
+font-weight:bold;
+margin:2%;
+font-size:30px;
+}
+.con3{
+background-color:#ffffff;
+width:100%;
+margin-top:20px;
+display:inline-flex;
+opacity:0.8;
+filter: alpha(opacity=80);
+}
+
+
+.button1{
+background-color: #228B22;
+    border-style: solid;
+    color: white;
+    padding: 15px 38px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 13px;
+    font-weight:bold;
+    cursor: pointer;
+margin:3%
+}
+a, u {
+    text-decoration: none;
+}
+
+
+</style>
+</head>
+<body onload="getLocation()" background="rs.jpg" >
+<div>
+<div class="con">
+<p class="con2">Career Enigma</p>
+<p class="con1"><a href="https://www.youtube.com/">Home</a></p>
+<p class="con1"><a href="https://www.youtube.com/">Contact Us</a></p>
+<p class="con1"><a href="https://www.youtube.com/">About Us</a></p>
+</div>
+
+<div class="con3">
+
+<div style="width:50%">
+<form name="form1" action="theme.html"  method="post">
+<h1>Create an account</h1>  
+Name:
+&nbsp &nbsp&nbsp<input type="text" name="first" placeholder="Name" size="25" heigth="50px"><br><br><br>
+Email:
+&nbsp &nbsp&nbsp<input type="text" name="email" placeholder="Email"size="25" heigth="25px"><br><br><br>
+Mobile:
+&nbsp&nbsp<input type="text" name="mobile" placeholder="Mobile Number" size="25" heigth="25px"><br><br><br>
+Password:<input type="password" name="password" placeholder="Password" size="25" heigth="25px"><br><br><br>
+<input type="radio" name="gender" value="male" checked> Male
+  <input type="radio" name="gender" value="female"> Female
+  <br><br>
+<input type="submit" class="button1" style=" background-color:#228B22" onclick="validateform()" value="Create Account" >
+
+</form>
+</div>
+
+<div style=" width:40%" id="map"> </div>
+
+</div>
+
+
+
+
+</div>
+</body>
+</html>

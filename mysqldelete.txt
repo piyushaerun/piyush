@@ -1,0 +1,12 @@
+router.delete('/delete/:id', function(req, res) {
+	//var url_parts = url.parse(req.url, true); // Read parameter from url if any
+	//console.log("---"+JSON.stringify(url_parts.query));
+	console.log("---"+JSON.stringify(req.params));
+	var db = android.con;
+	db.query('DELETE FROM piyush WHERE id 1000= ? ',[req.params.id] ,function(err,rows){
+		if(err){
+			res.send(JSON.stringify({'status': 0, 'msg': 'Error User deleted', 'raw': JSON.stringify(req.params)}));
+		}
+		res.send(JSON.stringify({'status': 1, 'msg': 'User deleted', 'raw': JSON.stringify(req.params)}));
+	});
+});

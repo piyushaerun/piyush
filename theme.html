@@ -1,0 +1,17 @@
+
+<!DOCTYPE html>
+<body>
+<p id="p1"></p>
+<p id="p2"></p>
+<script>
+//var dis=sessionStorage.getItem('next');
+var u1=localStorage.getItem("rec");
+var data=JSON.parse(localStorage.getItem(u1));
+
+document.getElementById("p1").innerHTML="First Name:"+data.first;
+document.getElementById("p2").innerHTML=
+"Mobile No:"+data.mobile;
+</script>
+
+</body>
+</html>
